@@ -29,9 +29,9 @@ export class AppComponent {
   };
   priceColor(currentKeg) {
     if (currentKeg.beerPrice < 5) {
-      return "bg-secondary";
-    } else if ( currentKeg.beerPrice === 5) {
       return "bg-dark";
+    } else if ( currentKeg.beerPrice === 5) {
+      return "bg-secondary";
     } else {
       return "bg-primary";
     }
@@ -48,10 +48,12 @@ export class AppComponent {
     }
   };
   pourPint(clickedKeg) {
-    if (clickedKeg.pintsLeft === 0) {
+    if (clickedKeg.pintsLeft < 2) {
       alert("This keg is tapped.");
+      this.kegs.splice(this.kegs.indexOf(clickedKeg), 1);
     } else {
       clickedKeg.pintsLeft--;
     }
   };
+
 }
