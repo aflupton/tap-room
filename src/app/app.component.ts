@@ -10,32 +10,64 @@ import 'bootstrap';
 export class AppComponent {
   title = 'Cafe and Tap Room';
   address = '600 1st Ave, Seattle, WA 98104';
-  userName = 'Andrew';
+  ownerName = 'Andrew';
   currentTime = new Date();
   month: number = this.currentTime.getMonth() + 1;
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
   kegs: Keg[] = [
-    new Keg(124, 'Evil Twin', 'Brooklyn, NY', 'Molotov Lite', 'Imperial IPA', 8.5, 5),
-    new Keg(124, 'Unibroue', 'Chambly, QC', 'La Fin du Monde', 'Belgian Tripel', 9, 7),
-    new Keg(124, 'Pabst Brewing Company', 'Los Angeles', 'Rainier', 'American Macro Lager', 4.5, 3.5)
+    new Keg(
+      124,
+      'Evil Twin',
+      'Brooklyn, NY',
+      'Molotov Lite',
+      'Imperial IPA',
+      8.5,
+      5),
+    new Keg(
+      124,
+      'Unibroue',
+      'Chambly, QC',
+      'La Fin du Monde',
+      'Belgian Tripel',
+      9,
+      7),
+    new Keg(
+      124,
+      'Pabst Brewing Company',
+      'Los Angeles',
+      'Rainier',
+      'American Macro Lager',
+      4.5,
+      3.5)
   ];
   selectedKeg = null;
+  // edit a clicked keg
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
   };
   finishedEditing() {
     this.selectedKeg = null;
   };
+  // colorize price values
   priceColor(currentKeg) {
     if (currentKeg.beerPrice < 5) {
       return "bg-dark";
     } else if ( currentKeg.beerPrice === 5) {
-      return "bg-secondary";
-    } else {
       return "bg-primary";
+    } else {
+      return "bg-info";
     }
   };
+  // colorize abv values
+  abvColor(currentKeg) {
+    if (currentKeg.beerAbv <= 5.5) {
+      return "bg-secondary";
+    } else {
+      return "bg-dark";
+    }
+  };
+  // show a progressively colorized warning as a keg is emptied
   kegLevel(currentKeg) {
     if (currentKeg.pintsLeft === 0) {
 
@@ -47,6 +79,7 @@ export class AppComponent {
       return "bg-success";
     }
   };
+  // decrement a keg after each pint pour, and remove emptied kegs
   pourPint(clickedKeg) {
     if (clickedKeg.pintsLeft < 2) {
       alert("This keg is tapped.");
@@ -55,5 +88,4 @@ export class AppComponent {
       clickedKeg.pintsLeft--;
     }
   };
-
 }

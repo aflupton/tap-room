@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div style="text-align:center">
     <h1 class="display-3">
-      {{userName}}'s {{title}}
+      {{ownerName}}'s {{title}}
     </h1>
     <p>{{address}}</p>
-    <h5>Our tap list is current as of:<br><strong>{{currentTime}}</strong></h5>
+    <h5>Our tap list is current as of:<br>{{currentTime}}</h5>
     <br>
     <!-- <div id="carouselExampleSlidesOnly" class="carousel slide h-75" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -24,13 +24,18 @@
         </div>
       </div>
     </div> -->
-    <img class="w-75" src="./assets/img/pub2.jpg" alt="Pub">
+    <img class="img-fluid rounded mx-auto w-50" src="./assets/img/pub2.jpg" alt="Pub">
   </div>
   <br>
   <h2 class="display-4" style="text-align:center">––– Menu –––</h2>
+  <!-- click to add a keg -->
+  <div class="mx-auto form-group">
+    <button class="btn btn-outline-warning" type="button" name="button">Add a keg</button>
+  </div>
+  <!-- display menu in a dynamic table -->
   <table class="table table-hover">
     <thead class="">
-      <tr>
+      <tr id="headers">
         <th scope="col">Pints</th>
         <th scope="col">Brewery</th>
         <th scope="col">Beer Name</th>
@@ -42,11 +47,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let currentKeg of kegs">
-        <th [class]="kegLevel(currentKeg)" scope="row" class="rounded bg-success">{{currentKeg.pintsLeft}}</th>
+        <th [class]="kegLevel(currentKeg)" scope="row" id="pints" class="rounded bg-success">{{currentKeg.pintsLeft}}</th>
         <td>{{currentKeg.breweryName}}</td>
-        <td><strong>{{currentKeg.beerName}}</strong></td>
+        <td>{{currentKeg.beerName}}</td>
         <td>{{currentKeg.beerStyle}}</td>
-        <td>{{currentKeg.beerAbv}}%</td>
+        <td [class]="abvColor(currentKeg)">{{currentKeg.beerAbv}}%</td>
         <td [class]="priceColor(currentKeg)">${{currentKeg.beerPrice}}</td>
         <td>
           <button class="btn btn-warning" (click)="pourPint(currentKeg)">Pour</button>
@@ -55,8 +60,17 @@
       </tr>
     </tbody>
   </table>
+  <div id="editForm" class="form-group" *ngIf="selectedKeg">
+    <label for="editKeg">Edit Keg Info:</label>
+    <input type="text" [(ngModel)]="selectedKeg.breweryName">
+    <input type="text" [(ngModel)]="selectedKeg.beerName">
+    <input type="text" [(ngModel)]="selectedKeg.beerStyle">
+    <input type="text" [(ngModel)]="selectedKeg.beerAbv">
+    <input type="text" [(ngModel)]="selectedKeg.beerPrice">
+    <button (click)="finishedEditing(clickedKeg)" class="btn btn-warning" type="button" name="button">Edit</button>
+  </div>
+  <!-- footer -->
   <div class="footer">
     <p>© Andrew Lupton, 2018</p>
   </div>
-
 </div>
