@@ -4,8 +4,7 @@
       {{userName}}'s {{title}}
     </h1>
     <p>{{address}}</p>
-    <p><a href="{{website}}">{{website}}</a></p>
-    <h5>Our tap list is current as of:<br>{{currentTime}}</h5>
+    <h5>Our tap list is current as of:<br><strong>{{currentTime}}</strong></h5>
     <br>
     <!-- <div id="carouselExampleSlidesOnly" class="carousel slide h-75" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -31,7 +30,7 @@
   <table class="table table-hover">
     <thead class="">
       <tr>
-        <th scope="col">Tap</th>
+        <th scope="col">Pints</th>
         <th scope="col">Brewery</th>
         <th scope="col">Beer Name</th>
         <th scope="col">Style</th>
@@ -42,12 +41,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let currentKeg of kegs">
-        <th scope="row" class="rounded bg-success"></th>
+        <th [class]="kegLevel(currentKeg)" scope="row" class="rounded bg-success">{{currentKeg.pintsLeft}}</th>
         <td>{{currentKeg.breweryName}}</td>
         <td><strong>{{currentKeg.beerName}}</strong></td>
         <td>{{currentKeg.beerStyle}}</td>
         <td>{{currentKeg.beerAbv}}%</td>
-        <td>${{currentKeg.beerPrice}}</td>
+        <td [class]="priceColor(currentKeg)">${{currentKeg.beerPrice}}</td>
         <td></td>
       </tr>
     </tbody>
