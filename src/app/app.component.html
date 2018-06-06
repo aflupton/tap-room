@@ -47,7 +47,10 @@
         <td>{{currentKeg.beerStyle}}</td>
         <td>{{currentKeg.beerAbv}}%</td>
         <td [class]="priceColor(currentKeg)">${{currentKeg.beerPrice}}</td>
-        <td></td>
+        <td>
+          <button class="btn btn-warning" (click)="pourPint(currentKeg)">Pour</button>
+          <button class="btn btn-warning" (click)="editKeg(currentKeg)">Edit</button>
+        </td>
       </tr>
     </tbody>
   </table>

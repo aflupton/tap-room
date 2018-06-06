@@ -16,9 +16,9 @@ export class AppComponent {
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
   kegs: Keg[] = [
-    new Keg(124, 'Evil Twin', 'Molotov Lite', 'Imperial IPA', 8.5, 5),
-    new Keg(124, 'Unibroue', 'La Fin du Monde', 'Belgian Tripel', 9, 7),
-    new Keg(124, 'Pabst Brewing Company', 'Rainier', 'American Macro Lager', 4.5, 3.5)
+    new Keg(124, 'Evil Twin', 'Brooklyn, NY', 'Molotov Lite', 'Imperial IPA', 8.5, 5),
+    new Keg(124, 'Unibroue', 'Chambly, QC', 'La Fin du Monde', 'Belgian Tripel', 9, 7),
+    new Keg(124, 'Pabst Brewing Company', 'Los Angeles', 'Rainier', 'American Macro Lager', 4.5, 3.5)
   ];
   selectedKeg = null;
   editKeg(clickedKeg) {
@@ -37,12 +37,21 @@ export class AppComponent {
     }
   };
   kegLevel(currentKeg) {
-    if (currentKeg.pintsLeft <= 10) {
+    if (currentKeg.pintsLeft === 0) {
+
+    }  else if (currentKeg.pintsLeft <= 10) {
       return "bg-danger";
     } else if (currentKeg.pintsLeft <= 30) {
       return "bg-warning";
     } else {
       return "bg-success";
     }
-  }
+  };
+  pourPint(clickedKeg) {
+    if (clickedKeg.pintsLeft === 0) {
+      alert("This keg is tapped.");
+    } else {
+      clickedKeg.pintsLeft--;
+    }
+  };
 }
