@@ -16,7 +16,7 @@ export class AppComponent {
   day: number = this.currentTime.getDate();
   year: number = this.currentTime.getFullYear();
   kegs: Keg[] = [
-    new Keg(
+    new Keg (
       124,
       'Evil Twin',
       'Brooklyn, NY',
@@ -24,7 +24,7 @@ export class AppComponent {
       'Imperial IPA',
       8.5,
       5),
-    new Keg(
+    new Keg (
       124,
       'Unibroue',
       'Chambly, QC',
@@ -32,15 +32,24 @@ export class AppComponent {
       'Belgian Tripel',
       9,
       7),
-    new Keg(
+    new Keg (
       124,
       'Pabst Brewing Company',
       'Los Angeles',
       'Rainier',
       'American Macro Lager',
       4.5,
-      3.5)
+      3.5),
+    new Keg (
+      124,
+      'Ruebens Brews',
+      'Seattle',
+      'Gose',
+      'Gose',
+      4.3,
+      5)
   ];
+  newKeg: Keg[] = [];
   selectedKeg = null;
   // edit a clicked keg
   editKeg(clickedKeg) {
@@ -48,6 +57,14 @@ export class AppComponent {
   };
   finishedEditing() {
     this.selectedKeg = null;
+  };
+  // add a new keg
+  showAddForm(newKeg) {
+    // write method to return form
+  };
+  addKeg(newKeg) {
+    this.kegs.push(newKeg);
+    this.newKeg = [];
   };
   // colorize price values
   priceColor(currentKeg) {
