@@ -1,0 +1,15 @@
+#headers {
+  /*text-decoration: underline;*/
+  font-size: 18pt;
+  font-family: sans-serif;
+}
+#pints {
+  text-align: center;
+}
+td, tr {
+  font-weight: 400;
+  font-size: 16pt;
+}
+th {
+  font-weight: 400;
+}

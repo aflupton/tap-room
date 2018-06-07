@@ -1,0 +1,40 @@
+<!-- display menu in a dynamic table -->
+<table class="table table-hover">
+  <thead class="">
+    <tr id="headers">
+      <th scope="col">Pints</th>
+      <th scope="col">Brewery</th>
+      <th scope="col">Beer Name</th>
+      <th scope="col">Style</th>
+      <th scope="col">ABV</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <select class="form-group" (change)="onChange($event.target.value)">
+        <option value="allKegs">All Kegs</option>
+        <option value="emptiedKegs">Empty Kegs</option>
+        <option value="partialKegs" selected="selected">Partial Kegs</option>
+      </select>
+    </tr>
+    <tr *ngFor="let currentKeg of childKegs | emptiness:filterByEmptinessness">
+      <th [class]="kegLevel(currentKeg)" scope="row" id="pints" class="rounded bg-success">{{currentKeg.pintsLeft}}</th>
+      <td>
+        <input type="checkbox" checked (click)="toggleDone(currentKeg, false)" *ngIf="currentKeg.done === true">
+        <input type="checkbox" checked (click)="toggleDone(currentKeg, false)" *ngIf="toggleDone.done === false">
+        <button type="button" (click)="editButtonClicked(currentKeg)">Edit</button>
+      </td>
+      <td>{{currentKeg.breweryName}}</td>
+      <td>{{currentKeg.beerName}}</td>
+      <td>{{currentKeg.beerStyle}}</td>
+      <td [class]="abvColor(currentKeg)">{{currentKeg.beerAbv}}%</td>
+      <td [class]="priceColor(currentKeg)">${{currentKeg.beerPrice}}</td>
+      <td>
+        <button class="btn btn-outline-warning" (click)="pourPint(currentKeg)">Pour</button>
+        <button class="btn btn-outline-warning" (click)="editButtonClicked(currentKeg)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

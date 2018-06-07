@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Keg } from './models/keg.model';
-import 'bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +7,7 @@ import 'bootstrap';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Cafe and Tap Room';
-  address = '600 1st Ave, Seattle, WA 98104';
-  ownerName = 'Andrew';
-  currentTime = new Date();
-  month: number = this.currentTime.getMonth() + 1;
-  day: number = this.currentTime.getDate();
-  year: number = this.currentTime.getFullYear();
-  kegs: Keg[] = [
+  masterKegs: Keg[] = [
     new Keg (
       124,
       'Evil Twin',
@@ -23,7 +15,8 @@ export class AppComponent {
       'Molotov Lite',
       'Imperial IPA',
       8.5,
-      5),
+      5
+    ),
     new Keg (
       124,
       'Unibroue',
@@ -31,7 +24,8 @@ export class AppComponent {
       'La Fin du Monde',
       'Belgian Tripel',
       9,
-      7),
+      7
+    ),
     new Keg (
       124,
       'Pabst Brewing Company',
@@ -39,7 +33,8 @@ export class AppComponent {
       'Rainier',
       'American Macro Lager',
       4.5,
-      3.5),
+      3.5
+    ),
     new Keg (
       124,
       'Ruebens Brews',
@@ -47,62 +42,25 @@ export class AppComponent {
       'Gose',
       'Gose',
       4.3,
-      5)
+      5
+    )
   ];
-  newKeg: Keg[] = [];
   selectedKeg = null;
-  // edit a clicked keg
+  newKeg: Keg [] = null;
+  showForm = null;
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
   };
   finishedEditing() {
     this.selectedKeg = null;
   };
-  // add a new keg
-  showAddForm(newKeg) {
-    // write method to return form
-  };
-  addKeg(newKeg) {
-    this.kegs.push(newKeg);
+  addKeg(newKeg: Keg) {
+    this.showForm = newKeg;
+    this.masterKegs.push(newKeg);
     this.newKeg = [];
+    this.showForm = null;
   };
-  // colorize price values
-  priceColor(currentKeg) {
-    if (currentKeg.beerPrice < 5) {
-      return "bg-dark";
-    } else if ( currentKeg.beerPrice === 5) {
-      return "bg-primary";
-    } else {
-      return "bg-info";
-    }
-  };
-  // colorize abv values
-  abvColor(currentKeg) {
-    if (currentKeg.beerAbv <= 5.5) {
-      return "bg-secondary";
-    } else {
-      return "bg-dark";
-    }
-  };
-  // show a progressively colorized warning as a keg is emptied
-  kegLevel(currentKeg) {
-    if (currentKeg.pintsLeft === 0) {
+  finishedAdding(clickedKeg) {
 
-    }  else if (currentKeg.pintsLeft <= 10) {
-      return "bg-danger";
-    } else if (currentKeg.pintsLeft <= 30) {
-      return "bg-warning";
-    } else {
-      return "bg-success";
-    }
-  };
-  // decrement a keg after each pint pour, and remove emptied kegs
-  pourPint(clickedKeg) {
-    if (clickedKeg.pintsLeft < 2) {
-      alert("This keg is tapped.");
-      this.kegs.splice(this.kegs.indexOf(clickedKeg), 1);
-    } else {
-      clickedKeg.pintsLeft--;
-    }
   };
 }

@@ -1,0 +1,29 @@
+<!-- click to add a keg -->
+<div class="form-group" *ngIf="newKeg">
+  <button class="btn btn-outline-warning"type="submit" name="add" (click)="showAddForm(newKeg)">Add a keg</button>
+</div>
+<br>
+<div class="mx-auto form-group" *ngIf="showForm">
+  <label class="" for="addKeg">Add Keg:</label>
+  <!-- <input type="text" [(ngModel)]="newKeg.pintsLeft" placeholder="Pints (e.g. 124)">
+  <input type="text" [(ngModel)]="newKeg.breweryName" placeholder="Brewery">
+  <input type="text" [(ngModel)]="newKeg.beerName" placeholder="Beer Name">
+  <input type="text" [(ngModel)]="newKeg.beerStyle" placeholder="Beer Style">
+  <input type="text" [(ngModel)]="newKeg.beerAbv" placeholder="Beer ABV">
+  <input type="text" [(ngModel)]="newKeg.beerPrice" placeholder="Beer Price"> -->
+  <label for="pintsLeft"># Pints</label>
+  <input type="text" #newPintsLeft>
+  <label for="breweryName">Brewery Name</label>
+  <input type="text" #newBreweryName>
+  <label for="breweryLocation">Brewery Location</label>
+  <input type="text" #newBreweryLocation>
+  <label for="beerName">Beer Name</label>
+  <input type="text" #newBeerName>
+  <label for="beerStyle">Beer Style</label>
+  <input type="text" #newBeerStyle>
+  <label for="beerAbv">Beer Abv</label>
+  <input type="text" #newBeerAbv>
+  <label for="beerPrice">Beer Price</label>
+  <input type="text" #newBeerPrice>
+  <button class="btn btn-outline-warning" type="button" name="submit" (click)="submitForm(newPintsLeft.value, newBreweryName.value, newbreweryLocation.value, newBeerName.value, newBeerStyle.value, newBeerAbv.value, newBeerPrice.value); newBreweryName.value='';newBreweryLocation.value='';newBeerName.value='';newBeerStyle.value='';newBeerAbv.value='';newBeerPrice='';">Add</button>
+</div>

@@ -1,0 +1,10 @@
+<div id="editForm" class="mx-auto form-group" *ngIf="selectedKeg">
+  <label for="editKeg">Edit Keg Info:</label>
+  <input type="text" [(ngModel)]="selectedKeg.pintsLeft" value="124">
+  <input type="text" [(ngModel)]="selectedKeg.breweryName">
+  <input type="text" [(ngModel)]="selectedKeg.beerName">
+  <input type="text" [(ngModel)]="selectedKeg.beerStyle">
+  <input type="text" [(ngModel)]="selectedKeg.beerAbv">
+  <input type="text" [(ngModel)]="selectedKeg.beerPrice">
+  <button (click)="finishedEditing()" class="btn btn-outline-warning" type="button" name="submit">Edit</button>
+</div>
